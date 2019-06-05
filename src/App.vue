@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header />
-    <WordContainer v-bind:wordInfo="wordInfo"/>
+    <Header v-on:update="updateWord"/>
+    <WordContainer v-bind:wordInfo="wordInfo" v-bind:word="word" v-bind:loading="loading" v-on:update="updateWord"/>
   </div>
 </template>
 
@@ -13,15 +13,29 @@ export default {
   name: 'app',
   components: {
     WordContainer,
-    Header
+    Header,
   },
   data() {
     return {
-      wordInfo: [{"meta":{"id":"date","uuid":"d9bd6974-7b42-450a-b6b5-780f4a5f8370","src":"coll_thes","section":"alpha","stems":["date","dates","to date"],"syns":[["appointment","assignation","engagement","rendezvous","tryst"],["continuance","duration","life","life span","lifetime","run","standing","time"]],"ants":[],"offensive":false},"hwi":{"hw":"date"},"fl":"noun","def":[{"sseq":[[["sense",{"sn":"1","dt":[["text","an agreement to be present at a specified time and place "],["vis",[{"t":"I have a {it}date{\/it} to meet my financial consultant at seven o\u0027clock"}]]],"syn_list":[[{"wd":"appointment"},{"wd":"assignation"},{"wd":"engagement"},{"wd":"rendezvous"},{"wd":"tryst"}]],"rel_list":[[{"wd":"arrangement"}],[{"wd":"invitation"}],[{"wd":"interview"}],[{"wd":"get-together"},{"wd":"meeting"}],[{"wd":"call"},{"wd":"visit"}],[{"wd":"schedule"}]]}]],[["sense",{"sn":"2","dt":[["text","the period during which something exists, lasts, or is in progress "],["vis",[{"t":"the embarrassingly short {it}date{\/it} of most of his romances"}]]],"syn_list":[[{"wd":"continuance"},{"wd":"duration"},{"wd":"life"},{"wd":"life span"},{"wd":"lifetime"},{"wd":"run"},{"wd":"standing"},{"wd":"time"}]],"rel_list":[[{"wd":"spell"},{"wd":"stretch"}],[{"wd":"span"},{"wd":"tenure"},{"wd":"term"}],[{"wd":"hitch"},{"wd":"tour"},{"wd":"turn"}],[{"wd":"half-life"}],[{"wd":"age"},{"wd":"longevity"}]]}]]]}],"shortdef":["an agreement to be present at a specified time and place","the period during which something exists, lasts, or is in progress"]},{"meta":{"id":"date","uuid":"a2ae4d8a-ed7f-4bfe-b04d-796f77cf34ed","src":"coll_thes","section":"alpha","target":{"tuuid":"dbca4106-7598-4e56-a61d-f02b228e32a3","tsrc":"collegiate"},"stems":["date","datable","dateable","dated","dater","daters","dates","dating"],"syns":[["go out (with)","take out"],["court"]],"ants":[],"offensive":false},"hwi":{"hw":"date"},"fl":"verb","def":[{"sseq":[[["sense",{"sn":"1","dt":[["text","to go on a social engagement with "],["vis",[{"t":"I don\u0027t want to {it}date{\/it} him\u2014I\u0027d rather just be friends"}]]],"syn_list":[[{"wd":"go out (with)"},{"wd":"take out"}]],"rel_list":[[{"wd":"accompany"},{"wd":"escort"},{"wd":"see"}],[{"wd":"court"},{"wd":"woo"}]]}]],[["sense",{"sn":"2","dt":[["text","to go on dates that may eventually lead to marriage "],["vis",[{"t":"we {it}dated{\/it} for two years before we got engaged"}]]],"syn_list":[[{"wd":"court"}]],"rel_list":[[{"wd":"attend"},{"wd":"gallant"},{"wd":"romance"},{"wd":"spark"},{"wd":"woo"}],[{"wd":"escort"},{"wd":"see"},{"wd":"take out"}],[{"wd":"go out"},{"wd":"step out"}]],"phrase_list":[[{"wd":"go steady"},{"wd":"keep company"},{"wd":"make love"}]]}]]]}],"shortdef":["to go on a social engagement with","to go on dates that may eventually lead to marriage"]},{"meta":{"id":"out-of-date","uuid":"211dbc5b-1cea-46f9-9ad9-bb28c4e647c8","src":"coll_thes","section":"alpha","target":{"tuuid":"93042ea7-b283-4ffe-bc27-72adeeb06f8e","tsrc":"collegiate"},"stems":["out-of-date"],"syns":[["antiquated","archaic","dated","d\u00e9mod\u00e9","demoded","fossilized","kaput","medieval","moribund","mossy","moth-eaten","neolithic","Noachian","obsolete","outdated","outmoded","outworn","pass\u00e9","prehistoric","rusty","Stone Age","superannuated"]],"ants":[],"offensive":false},"hwi":{"hw":"out-of-date"},"fl":"adjective","def":[{"sseq":[[["sense",{"dt":[["text","having passed its time of use or usefulness "],["vis",[{"t":"his file contained {it}out-of-date{\/it} information that might have been accurate when he was first hired but is no longer so"}]]],"syn_list":[[{"wd":"antiquated"},{"wd":"archaic"},{"wd":"dated"},{"wd":"d\u00e9mod\u00e9"},{"wd":"demoded"},{"wd":"fossilized"},{"wd":"kaput","wvrs":[{"wvl":"also","wva":"kaputt"}]},{"wd":"medieval","wvrs":[{"wvl":"also","wva":"mediaeval"}]},{"wd":"moribund"},{"wd":"mossy"},{"wd":"moth-eaten"},{"wd":"neolithic"},{"wd":"Noachian"},{"wd":"obsolete"},{"wd":"outdated"},{"wd":"outmoded"},{"wd":"outworn"},{"wd":"pass\u00e9"},{"wd":"prehistoric","wvrs":[{"wvl":"also","wva":"prehistorical"}]},{"wd":"rusty"},{"wd":"Stone Age"},{"wd":"superannuated"}]],"rel_list":[[{"wd":"aging","wvrs":[{"wvl":"or","wva":"ageing"}]},{"wd":"obsolescent"}],[{"wd":"discarded"},{"wd":"disused"},{"wd":"inoperable"},{"wd":"unusable"},{"wd":"unworkable"},{"wd":"useless"}],[{"wd":"dead"},{"wd":"defunct"},{"wd":"expired"},{"wd":"extinct"},{"wd":"vanished"}],[{"wd":"dormant"},{"wd":"fallow"},{"wd":"free"},{"wd":"idle"},{"wd":"inactive"},{"wd":"inert"},{"wd":"inoperative"},{"wd":"latent"}],[{"wd":"ancient"},{"wd":"antediluvian"},{"wd":"antique"},{"wd":"dateless"},{"wd":"fusty"},{"wd":"musty"},{"wd":"old"}],[{"wd":"oldfangled"},{"wd":"old-fashioned"},{"wd":"old-time"},{"wd":"retro"},{"wd":"vintage"}],[{"wd":"aged"},{"wd":"age-old"},{"wd":"hoary"},{"wd":"venerable"}],[{"wd":"atavistic"},{"wd":"bygone"},{"wd":"erstwhile"},{"wd":"former"},{"wd":"historic"},{"wd":"historical"},{"wd":"late"},{"wd":"old-world"},{"wd":"past"}]],"near_list":[[{"wd":"contemporary"},{"wd":"current"},{"wd":"mod"},{"wd":"modern"},{"wd":"new"},{"wd":"newfangled"},{"wd":"new-fashioned"},{"wd":"present-day"},{"wd":"recent"},{"wd":"ultramodern"},{"wd":"up-to-date"},{"wd":"up-to-the-minute"}],[{"wd":"fresh"}],[{"wd":"modernized"},{"wd":"refurbished"},{"wd":"remodeled"},{"wd":"renewed"}],[{"wd":"functional"},{"wd":"operable"},{"wd":"operational"},{"wd":"workable"}],[{"wd":"active"},{"wd":"alive"},{"wd":"busy"},{"wd":"employed"},{"wd":"functioning"},{"wd":"operating"},{"wd":"operative"}]]}]]]}],"shortdef":["having passed its time of use or usefulness"]},{"meta":{"id":"up-to-date","uuid":"4dcdc34a-862c-4086-988f-1d7226035c21","src":"coll_thes","section":"alpha","target":{"tuuid":"6733abf7-4b42-4fe6-b4e2-a2a207f729aa","tsrc":"collegiate"},"stems":["up-to-date","up-to-dately","up-to-dateness","up-to-datenesses"],"syns":[["contemporary","current","designer","hot","mod","modern","modernistic","new","new age","new-fashioned","newfangled","present-day","red-hot","space-age","state-of-the-art","ultramodern","up-to-the-minute"],["abreast","acquainted","au courant","conversant","familiar","informed","knowledgeable","up","versed","well-informed"]],"ants":[["antiquated","archaic","dated","fusty","musty","oldfangled","old-fashioned","old-time","out-of-date","pass\u00e9"],["ignorant","unacquainted","unfamiliar","uninformed","unknowledgeable"]],"offensive":false},"hwi":{"hw":"up-to-date"},"fl":"adjective","def":[{"sseq":[[["sense",{"sn":"1","dt":[["text","being or involving the latest methods, concepts, information, or styles "],["vis",[{"t":"demanded the most {it}up-to-date{\/it} computer system available"}]]],"syn_list":[[{"wd":"contemporary"},{"wd":"current"},{"wd":"designer"},{"wd":"hot"},{"wd":"mod"},{"wd":"modern"},{"wd":"modernistic"},{"wd":"new"},{"wd":"new age"},{"wd":"new-fashioned"},{"wd":"newfangled"},{"wd":"present-day"},{"wd":"red-hot"},{"wd":"space-age"},{"wd":"state-of-the-art"},{"wd":"ultramodern"},{"wd":"up-to-the-minute"}]],"rel_list":[[{"wd":"fashionable"},{"wd":"happening"},{"wd":"in"},{"wd":"modish"},{"wd":"nouvelle"},{"wd":"now"},{"wd":"stylish"}],[{"wd":"last"},{"wd":"latest"}],[{"wd":"modernized"},{"wd":"updated"}],[{"wd":"futuristic"},{"wd":"high-tech","wvrs":[{"wvl":"also","wva":"hi-tech"}]}],[{"wd":"latter-day"},{"wd":"recent"}]],"near_list":[[{"wd":"anachronistic"}],[{"wd":"aged"},{"wd":"age-old"},{"wd":"ancient"},{"wd":"antediluvian"},{"wd":"hoary"},{"wd":"old"},{"wd":"venerable"}],[{"wd":"bygone"},{"wd":"former"},{"wd":"late"},{"wd":"olden"},{"wd":"past"}],[{"wd":"antique"},{"wd":"historic"},{"wd":"historical"}],[{"wd":"retro"},{"wd":"retrograde"}],[{"wd":"kaput","wvrs":[{"wvl":"also","wva":"kaputt"}]},{"wd":"obsolete"},{"wd":"outmoded"},{"wd":"outworn"},{"wd":"unmodernized"}],[{"wd":"old-world"}],[{"wd":"discarded"},{"wd":"disused"},{"wd":"moth-eaten"}],[{"wd":"forgotten"},{"wd":"remote"}],[{"wd":"ageless"},{"wd":"dateless"},{"wd":"timeless"}]],"ant_list":[[{"wd":"antiquated"},{"wd":"archaic"},{"wd":"dated"},{"wd":"fusty"},{"wd":"musty"},{"wd":"oldfangled"},{"wd":"old-fashioned"},{"wd":"old-time"},{"wd":"out-of-date"},{"wd":"pass\u00e9"}]]}]],[["sense",{"sn":"2","dt":[["text","having information especially as a result of study or experience "],["vis",[{"t":"I\u0027m afraid that I\u0027m not {it}up-to-date{\/it} on that issue"}]]],"syn_list":[[{"wd":"abreast"},{"wd":"acquainted"},{"wd":"au courant"},{"wd":"conversant"},{"wd":"familiar"},{"wd":"informed"},{"wd":"knowledgeable"},{"wd":"up"},{"wd":"versed"},{"wd":"well-informed"}]],"rel_list":[[{"wd":"alive"},{"wd":"aware"},{"wd":"cognizant"},{"wd":"conscious"},{"wd":"heedful"},{"wd":"mindful"},{"wd":"sensible"},{"wd":"sentient"}]],"phrase_list":[[{"wd":"at home"},{"wd":"in the know"}]],"near_list":[[{"wd":"insensible"},{"wd":"unaware"},{"wd":"unconscious"},{"wd":"unmindful"}],[{"wd":"blind"},{"wd":"oblivious"},{"wd":"unknowing"},{"wd":"unwitting"}],[{"wd":"inattentive"},{"wd":"unheeding"}]],"ant_list":[[{"wd":"ignorant"},{"wd":"unacquainted"},{"wd":"unfamiliar"},{"wd":"uninformed"},{"wd":"unknowledgeable"}]]}]]]}],"shortdef":["being or involving the latest methods, concepts, information, or styles","having information especially as a result of study or experience"]}]
+      wordInfo: [],
+      loading: false,
+      word: ""
     }
   },
   methods: {
-    updateWord: function(word){
+    async updateWord(word){
+      this.word = word
+      const updateWord = word.replace(/ /gi , "%20")
+      try{
+        this.loading = true
+        const url = `https://www.dictionaryapi.com/api/v3/references/thesaurus/json/${updateWord}?key=${process.env.VUE_APP_APIKEY}`
+        const response = await fetch(url)
+        const data = await response.json()
+        this.wordInfo = data
+        this.loading = false
+      } catch (error){
+        console.log(error)
+      }
     },
     fetchWord: async () => {
       const response = await fetch()
@@ -32,6 +46,10 @@ export default {
 </script>
 
 <style>
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
 body {
   background-color: #f4f4f4;
 }

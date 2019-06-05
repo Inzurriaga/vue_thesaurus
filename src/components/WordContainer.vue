@@ -1,11 +1,13 @@
 <template>
   <div>
-    <ValidWord v-if="typeof wordInfo[0].meta.id === 'string'" v-bind:wordInfo="wordInfo"/>
-    <InvalidWord v-else/>
+    <Loading v-if="loading" />
+    <InvalidWord v-else-if="typeof wordInfo[0] == 'string'" v-bind:word="word" v-bind:wordInfo="wordInfo" v-on="$listeners"/>
+    <ValidWord v-else v-bind:wordInfo="wordInfo" v-on="$listeners"/>
   </div>
 </template>
 
 <script>
+import Loading from "./Loading.vue"
 import ValidWord from "./ValidWordContainer.vue"
 import InvalidWord from "./InvalidWordContainer.vue"
 
@@ -13,10 +15,13 @@ export default {
   name: 'WordContainer',
   components: {
     ValidWord,
-    InvalidWord
+    InvalidWord,
+    Loading
   },
   props: {
-    wordInfo: Array
+    loading: Boolean,
+    wordInfo: Array,
+    word: String
   }
 }
 </script>
