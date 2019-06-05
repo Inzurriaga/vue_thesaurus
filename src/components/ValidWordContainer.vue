@@ -1,20 +1,30 @@
 <template>
   <div class="word-container">
-    <article class="word-card" v-bind:key="word.meta.id" v-for="word in wordInfo">
-      <div class="word-title">
-        <h2>{{ word.meta.id }}</h2>
-        <h3>{{ word.fl }}</h3>
-      </div>
-      <div class="word-info">
-        <div v-bind:key="def" v-for="(def, index) in word.def[0].sseq">
-          <p class="definition">{{ index + 1}}. {{ def[0][1].dt[0][1] }}</p>
-          <div class="synonyms">
-            <p>Synonyms</p>
-            <button v-on:click="$emit('update', syn.wd)" v-bind:key="syn.wd" v-for="syn in def[0][1].syn_list[0]">{{ syn.wd }}</button>
+    <masonry  :cols="{ default: (function(){
+      if(wordInfo.length > 2){
+        return 3
+      }else if( wordInfo.length === 2){
+        return 2
+      }else{
+        return 1
+      }
+    })()}" >
+      <article class="word-card" v-bind:key="word.meta.id" v-for="word in wordInfo">
+        <div class="word-title">
+          <h2>{{ word.meta.id }}</h2>
+          <h3>{{ word.fl }}</h3>
+        </div>
+        <div class="word-info">
+          <div v-bind:key="index" v-for="(def, index) in word.def[0].sseq">
+            <p class="definition">{{ index + 1}}. {{ def[0][1].dt[0][1] }}</p>
+            <div class="synonyms">
+              <p>Synonyms</p>
+              <button v-on:click="$emit('update', syn.wd)" v-bind:key="syn.wd" v-for="syn in def[0][1].syn_list[0]">{{ syn.wd }}</button>
+            </div>
           </div>
         </div>
-      </div>
-    </article>
+      </article>
+    </masonry>
   </div>
 </template>
 
@@ -30,8 +40,6 @@
 <style scoped>
   .word-container {
     margin-top: 160px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
   }
   .word-card {
     padding: 10px;
