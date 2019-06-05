@@ -1,7 +1,7 @@
 <template>
   <div class="invalid-word-container">
     <h1>"{{ word }}" not found, did you mean:</h1>
-    <div>
+    <div class="options">
       <button v-on:click="$emit('update', word)" v-for="word in wordInfo">{{ word }}</button>
     </div>
   </div>
@@ -20,7 +20,11 @@
 <style scoped>
   .invalid-word-container {
     margin-top: 200px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  }
+  button {
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 10px;
+    font-size: 30px;
   }
 </style>

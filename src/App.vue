@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header v-on:update="updateWord"/>
-    <WordContainer v-bind:wordInfo="wordInfo" v-bind:word="word" v-bind:loading="loading" v-on:update="updateWord"/>
+    <WordContainer v-bind:error="error" v-bind:wordInfo="wordInfo" v-bind:word="word" v-bind:loading="loading" v-on:update="updateWord"/>
   </div>
 </template>
 
@@ -19,7 +19,8 @@ export default {
     return {
       wordInfo: [],
       loading: false,
-      word: ""
+      word: "",
+      error: false
     }
   },
   methods: {
@@ -27,6 +28,7 @@ export default {
       this.word = word
       const updateWord = word.replace(/ /gi , "%20")
       try{
+        this.error = false
         this.loading = true
         const url = `https://www.dictionaryapi.com/api/v3/references/thesaurus/json/${updateWord}?key=${process.env.VUE_APP_APIKEY}`
         const response = await fetch(url)
@@ -34,6 +36,7 @@ export default {
         this.wordInfo = data
         this.loading = false
       } catch (error){
+        this.error = true
         console.log(error)
       }
     },
