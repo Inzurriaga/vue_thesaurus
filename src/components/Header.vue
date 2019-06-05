@@ -31,7 +31,7 @@ export default {
     background-color: #375d71;
     box-shadow: 0 0 4px 0 rgba(0,0,0,.10);
     width: 100%;
-    height: 140px;
+    height: 120px;
   }
   h1 {
     margin: 0;
