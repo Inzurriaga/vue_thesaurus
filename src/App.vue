@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header v-on:update="updateWord"/>
-    <WordContainer v-bind:error="error" v-bind:wordInfo="wordInfo" v-bind:word="word" v-bind:loading="loading" v-on:update="updateWord"/>
+    <WordContainer  v-bind:home="home" v-bind:error="error" v-bind:wordInfo="wordInfo" v-bind:word="word" v-bind:loading="loading" v-on:update="updateWord"/>
   </div>
 </template>
 
@@ -17,6 +17,7 @@ export default {
   },
   data() {
     return {
+      home: true,
       wordInfo: [],
       loading: false,
       word: "",
@@ -26,6 +27,7 @@ export default {
   methods: {
     async updateWord(word){
       this.word = word
+      this.home = false
       const updateWord = word.replace(/ /gi , "%20")
       try{
         this.error = false
@@ -34,11 +36,11 @@ export default {
         const response = await fetch(url)
         const data = await response.json()
         this.wordInfo = data
-        this.loading = false
       } catch (error){
         this.error = true
         console.log(error)
       }
+      this.loading = false
     },
     fetchWord: async () => {
       const response = await fetch()
